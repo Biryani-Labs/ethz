@@ -1,13 +1,11 @@
 package main
 
 import (
-	"github.com/Biryani-Labs/ezeth/cli"
-	"github.com/Biryani-Labs/ezeth/common/logs"
-	"github.com/Biryani-Labs/ezeth/config"
+	"github.com/Biryani-Labs/ethz/cli"
+	"github.com/Biryani-Labs/ethz/config"
 )
 
 func init() {
-	logs.Initilize()
 	config.InitilizeConfig()
 }
 

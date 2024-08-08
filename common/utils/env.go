@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Biryani-Labs/ezeth/common/logs"
-	"github.com/Biryani-Labs/ezeth/constants"
+	"github.com/Biryani-Labs/ethz/common/logs"
+	"github.com/Biryani-Labs/ethz/constants"
 	"github.com/spf13/viper"
 )
 

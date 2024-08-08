@@ -4,7 +4,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/Biryani-Labs/ezeth/common/logs"
+	"github.com/Biryani-Labs/ethz/common/logs"
 	"github.com/pterm/pterm"
 	"golang.org/x/term"
 )

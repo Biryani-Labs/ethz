@@ -1,6 +1,6 @@
 package cmdconfig
 
-import "github.com/Biryani-Labs/ezeth/pkg/schema"
+import "github.com/Biryani-Labs/ethz/pkg/schema"
 
 type FetchConfig struct {
 	schema.CliBlueprintName

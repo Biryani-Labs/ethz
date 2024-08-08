@@ -3,7 +3,7 @@ package config
 import (
 	"path"
 
-	"github.com/Biryani-Labs/ezeth/common/utils"
+	"github.com/Biryani-Labs/ethz/common/utils"
 	"github.com/spf13/viper"
 )
 

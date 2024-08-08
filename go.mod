@@ -1,4 +1,4 @@
-module github.com/Biryani-Labs/ezeth
+module github.com/Biryani-Labs/ethz
 
 go 1.21.4
 
@@ -6,7 +6,6 @@ require (
 	github.com/alecthomas/kong v0.9.0
 	github.com/pterm/pterm v0.12.79
 	github.com/spf13/viper v1.19.0
-	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.21.0
 	golang.org/x/term v0.18.0
 )

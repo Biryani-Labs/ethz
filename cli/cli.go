@@ -1,13 +1,11 @@
 package cli
 
 import (
-	"fmt"
-	"os"
+	"log"
 
-	cmdconfig "github.com/Biryani-Labs/ezeth/cli/cmd_config"
-	cmddraft "github.com/Biryani-Labs/ezeth/cli/cmd_draft"
-	cmdexec "github.com/Biryani-Labs/ezeth/cli/cmd_exec"
-	"github.com/Biryani-Labs/ezeth/common/logs"
+	cmdconfig "github.com/Biryani-Labs/ethz/cli/cmd_config"
+	cmddraft "github.com/Biryani-Labs/ethz/cli/cmd_draft"
+	cmdexec "github.com/Biryani-Labs/ethz/cli/cmd_exec"
 	"github.com/alecthomas/kong"
 )
 
@@ -25,11 +23,6 @@ func Run() {
 	)
 
 	if err := ctx.Run(&cli); err != nil {
-		logAndExit(fmt.Errorf("error running command: %w", err))
+		log.Fatalln(err)
 	}
-}
-
-func logAndExit(err error) {
-	logs.Error(err, "Error initializing Ezeth")
-	os.Exit(1)
 }

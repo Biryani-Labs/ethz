@@ -1,14 +1,15 @@
 package cmddraft
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 
-	"github.com/Biryani-Labs/ezeth/common/logs"
-	"github.com/Biryani-Labs/ezeth/config"
-	"github.com/Biryani-Labs/ezeth/pkg/schema"
+	"github.com/Biryani-Labs/ethz/common/logs"
+	"github.com/Biryani-Labs/ethz/common/utils"
+	"github.com/Biryani-Labs/ethz/config"
+	"github.com/Biryani-Labs/ethz/constants"
+	"github.com/Biryani-Labs/ethz/pkg/schema"
 )
 
 type DraftCmd struct {
@@ -24,8 +25,8 @@ func (draft *DraftCmd) Run() error {
 		}
 
 		config := &schema.Config{}
-		if err := saveConfig(filepath.Join(blueprintPath, "blueprint.json"), config); err != nil {
-			return logs.Error(err, "error saving blueprint config")
+		if err := utils.BlueprintWriteJsonFile(filepath.Join(blueprintPath, constants.BlueprintFile), config); err != nil {
+			logs.Error(err, "error saving blueprint config")
 		}
 
 		logs.Info(fmt.Sprintf("New blueprint '%s' has been created", draft.BlueprintName))
@@ -47,19 +48,6 @@ func createBlueprintDirectoryStructure(blueprintPath string) error {
 	}
 
 	if err := os.MkdirAll(filepath.Join(blueprintPath, "configs"), 0755); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func saveConfig(path string, config *schema.Config) error {
-	data, err := json.MarshalIndent(config, "", "  ")
-	if err != nil {
-		return err
-	}
-
-	if err := os.WriteFile(path, data, 0644); err != nil {
 		return err
 	}
 
