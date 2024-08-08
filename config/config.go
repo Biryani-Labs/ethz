@@ -1,6 +1,8 @@
 package config
 
 import (
+	"path"
+
 	"github.com/Biryani-Labs/ezeth/common/utils"
 	"github.com/spf13/viper"
 )
@@ -8,6 +10,10 @@ import (
 var (
 	HOME_DIR = ""
 )
+
+func LocateInHomePath(location string) string {
+	return path.Join(HOME_DIR, location)
+}
 
 func InitilizeConfig() {
 	utils.ImportEnv()

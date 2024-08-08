@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/Biryani-Labs/ezeth/common/logs"
 	"github.com/Biryani-Labs/ezeth/constants"
 	"github.com/spf13/viper"
 )
@@ -26,12 +27,12 @@ func ImportEnv() {
 
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			log.Panicln(fmt.Errorf("fatal error config file: %s", err))
+			logs.Error(err, "fatal error config file")
 		}
 	}
 	for _, element := range constants.ENV {
 		if viper.GetString(element) == "" {
-			log.Panicln(fmt.Errorf("env variables not present %s", element))
+			logs.Error(fmt.Errorf("env variables not present %s", element), "")
 		}
 	}
 }
