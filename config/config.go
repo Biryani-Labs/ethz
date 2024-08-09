@@ -2,20 +2,21 @@ package config
 
 import (
 	"path"
-
-	"github.com/Biryani-Labs/ethz/common/utils"
-	"github.com/spf13/viper"
 )
 
 var (
 	HOME_DIR = ""
+	ASK_PASS = false
 )
 
 func LocateInHomePath(location string) string {
 	return path.Join(HOME_DIR, location)
 }
 
-func InitilizeConfig() {
-	utils.ImportEnv()
-	HOME_DIR = viper.GetString("HOME_DIR")
+func SetHomevar(home string) {
+	HOME_DIR = home
+}
+
+func SetAskpass(askpass bool) {
+	ASK_PASS = askpass
 }
