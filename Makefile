@@ -1,5 +1,5 @@
 # Makefile
-BINARY_NAME=ethz
+BINARY_NAME=ethzd
 VERSION_PACKAGE=github.com/hakai-here/scylla/constants
 VERSION := $(shell echo $(shell git describe --tags) | sed 's/^v//')
 

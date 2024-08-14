@@ -24,7 +24,6 @@ const (
 func GetSSHConnection(ctx context.Context, user, host, port, password string) (*ssh.Client, error) {
 	sshMutex.Lock()
 	defer sshMutex.Unlock()
-
 	for retry := 1; retry <= maxRetries; retry++ {
 		select {
 		case <-ctx.Done():
@@ -55,7 +54,6 @@ func connect(ctx context.Context, user, host, port, password string) (*ssh.Clien
 	}
 
 	addr := net.JoinHostPort(host, port)
-
 	var sshConn net.Conn
 	var err error
 

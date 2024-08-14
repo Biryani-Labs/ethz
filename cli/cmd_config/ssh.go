@@ -15,11 +15,17 @@ import (
 type SSHConfig struct {
 	Host     HostSSHConfig     `cmd:"host" help:"Configure SSH Host variable"`
 	Username UsernameSSHConfig `cmd:"user" help:"Configure SSH Username variable"`
+	Port     PortSSHConfig     `cmd:"host" help:"Configure Port Host variable"`
 }
 
 type HostSSHConfig struct {
 	schema.CliBlueprintName
 	Hostname string `arg:"" help:"Hostname for SSH connection"`
+}
+
+type PortSSHConfig struct {
+	schema.CliBlueprintName
+	Port string `arg:"" help:"PortNumber for SSH connection"`
 }
 
 type UsernameSSHConfig struct {
@@ -49,6 +55,20 @@ func (username *UsernameSSHConfig) Run() error {
 
 	ethzconfig.SSHUpdateConfigUsername(username.Username, configFile)
 	if err := utils.BlueprintWriteJsonFile(filepath.Join(config.LocateInHomePath(username.BlueprintName), constants.BlueprintFile), configFile); err != nil {
+		logs.Error(err, "Unable to update the blueprint file")
+	}
+	logs.Info("SSH username successfully updated.")
+	return nil
+}
+
+func (port *PortSSHConfig) Run() error {
+	configFile, err := utils.BlueprintReadJsonFile(filepath.Join(config.LocateInHomePath(port.BlueprintName), constants.BlueprintFile))
+	if err != nil {
+		return fmt.Errorf("unable to read the configuration file for SSH username: %w", err)
+	}
+
+	ethzconfig.SSHUpdateConfigPort(port.Port, configFile)
+	if err := utils.BlueprintWriteJsonFile(filepath.Join(config.LocateInHomePath(port.BlueprintName), constants.BlueprintFile), configFile); err != nil {
 		logs.Error(err, "Unable to update the blueprint file")
 	}
 	logs.Info("SSH username successfully updated.")
